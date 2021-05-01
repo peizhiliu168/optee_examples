@@ -28,12 +28,24 @@
 #include <err.h>
 #include <stdio.h>
 #include <string.h>
+#include <sys/syscall.h>
+#include <time.h>
+
+#define ADD_SCTRACE 440
+#define GET_SCTRACE 441
 
 /* OP-TEE TEE client API (built by optee_client) */
 #include <tee_client_api.h>
 
 /* For the UUID (found in the TA's h-file(s)) */
 #include <hello_world_ta.h>
+
+typedef struct sctrace {
+    unsigned long id;
+    struct timespec ts;
+    struct sctrace* next;
+} sctrace_t;
+
 
 int main(void)
 {
@@ -99,6 +111,11 @@ int main(void)
 	 */
 
 	TEEC_CloseSession(&sess);
+
+	sctrace_t* trace;
+	syscall(GET_SCTRACE, &trace);
+
+	printf("id: %d, time: %d", trace->id, trace->ts);
 
 	TEEC_FinalizeContext(&ctx);
 

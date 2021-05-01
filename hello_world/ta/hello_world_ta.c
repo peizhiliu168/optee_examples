@@ -103,6 +103,8 @@ static TEE_Result inc_value(uint32_t param_types,
 						   TEE_PARAM_TYPE_NONE);
 
 	DMSG("has been called");
+	DMSG("trace added...");
+	TEE_AddSctrace(1234);
 
 	if (param_types != exp_param_types)
 		return TEE_ERROR_BAD_PARAMETERS;
