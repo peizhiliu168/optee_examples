@@ -33,9 +33,9 @@
 #define USER_TA_HEADER_DEFINES_H
 
 /* To get the TA UUID definition */
-#include <hello_world_ta.h>
+#include <test_ta_memory_ta.h>
 
-#define TA_UUID				TA_HELLO_WORLD_UUID
+#define TA_UUID				TA_TEST_TA_MEMORY_UUID
 
 /*
  * TA properties: multi-instance TA, no specific attribute
@@ -47,20 +47,12 @@
 #define TA_STACK_SIZE			(2 * 1024)
 
 /* Provisioned heap size for TEE_Malloc() and friends */
-#define TA_DATA_SIZE			(10 * 1048576)
+#define TA_DATA_SIZE			(13ull * 1024ull * 1024ull)
 
 /* The gpd.ta.version property */
 #define TA_VERSION	"1.0"
 
 /* The gpd.ta.description property */
-#define TA_DESCRIPTION	"Example of OP-TEE Hello World Trusted Application"
-
-/* Extra properties */
-#define TA_CURRENT_TA_EXT_PROPERTIES \
-    { "org.linaro.optee.examples.hello_world.property1", \
-	USER_TA_PROP_TYPE_STRING, \
-        "Some string" }, \
-    { "org.linaro.optee.examples.hello_world.property2", \
-	USER_TA_PROP_TYPE_U32, &(const uint32_t){ 0x0010 } }
+#define TA_DESCRIPTION	"OP-TEE TA memory test"
 
 #endif /* USER_TA_HEADER_DEFINES_H */

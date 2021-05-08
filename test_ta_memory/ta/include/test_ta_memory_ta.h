@@ -24,43 +24,20 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+#ifndef TA_TEST_TA_MEMORY_H
+#define TA_TEST_TA_MEMORY_H
+
 
 /*
- * The name of this file must not be modified
+ * This UUID is generated with uuidgen
+ * the ITU-T UUID generator at http://www.itu.int/ITU-T/asn1/uuid.html
  */
+#define TA_TEST_TA_MEMORY_UUID \
+	{ 0xed41a8c5, 0x8f03, 0x4b4f, \
+		{ 0x8f, 0x12, 0x12, 0x72, 0xb9, 0x0b, 0xa9, 0x14} }
 
-#ifndef USER_TA_HEADER_DEFINES_H
-#define USER_TA_HEADER_DEFINES_H
+/* The function IDs implemented in this TA */
+#define TA_TEST_TA_MEMORY_TEST_HEAP			0
+#define TA_TEST_TA_MEMORY_TEST_GLOBAL		1
 
-/* To get the TA UUID definition */
-#include <hello_world_ta.h>
-
-#define TA_UUID				TA_HELLO_WORLD_UUID
-
-/*
- * TA properties: multi-instance TA, no specific attribute
- * TA_FLAG_EXEC_DDR is meaningless but mandated.
- */
-#define TA_FLAGS			TA_FLAG_EXEC_DDR
-
-/* Provisioned stack size */
-#define TA_STACK_SIZE			(2 * 1024)
-
-/* Provisioned heap size for TEE_Malloc() and friends */
-#define TA_DATA_SIZE			(10 * 1048576)
-
-/* The gpd.ta.version property */
-#define TA_VERSION	"1.0"
-
-/* The gpd.ta.description property */
-#define TA_DESCRIPTION	"Example of OP-TEE Hello World Trusted Application"
-
-/* Extra properties */
-#define TA_CURRENT_TA_EXT_PROPERTIES \
-    { "org.linaro.optee.examples.hello_world.property1", \
-	USER_TA_PROP_TYPE_STRING, \
-        "Some string" }, \
-    { "org.linaro.optee.examples.hello_world.property2", \
-	USER_TA_PROP_TYPE_U32, &(const uint32_t){ 0x0010 } }
-
-#endif /* USER_TA_HEADER_DEFINES_H */
+#endif /*TA_TEST_TA_MEMORY_H*/
