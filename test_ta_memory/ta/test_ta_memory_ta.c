@@ -62,6 +62,8 @@ TEE_Result TA_CreateEntryPoint(void)
 void TA_DestroyEntryPoint(void)
 {
 	DMSG("has been called");
+	TEE_GetSctrace(1);
+	TEE_ResetSctrace();
 }
 
 /*
@@ -130,12 +132,16 @@ static TEE_Result heap_test(uint32_t param_types,
 
 	uint64_t counter = 0;
 	//DMSG("section 1");
-	while (1){
+	TEE_InitSctrace();
+
+	while (counter < 100){
 		//DMSG("section 2");
 		TEE_AddSctrace(counter);
 		//TEE_MallocStats(stats);
 		//DMSG("allocated: %lx\n", stats->allocated);
-		//volatile uint64_t *p = TEE_Malloc(4096, TEE_MALLOC_FILL_ZERO);
+		//uint64_t *p = TEE_Malloc(4096, TEE_MALLOC_FILL_ZERO);
+		// TEE_GetSctrace(1);
+		// TEE_GetSctrace(1);
 		//*p = 'A';
 		counter ++;
 	}
