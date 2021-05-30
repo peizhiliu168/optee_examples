@@ -47,7 +47,7 @@
 #define TA_STACK_SIZE			(2 * 1024)
 
 /* Provisioned heap size for TEE_Malloc() and friends */
-#define TA_DATA_SIZE			(13ull * 1024ull * 1024ull)
+#define TA_DATA_SIZE			(45ull * 1024ull * 1024ull)
 
 /* The gpd.ta.version property */
 #define TA_VERSION	"1.0"
